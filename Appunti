@@ -354,4 +354,100 @@ pairs(stacksent)
 b2
 #se digito il nome di un oggetto mi escono tutte le sue informazioni relative
 
+# Indici spettrali
 
+Cosa sono gli indici spettrali
+Vediamo immagini satellitari come matrice di numeri
+Vogliamo ad es. vedere la biomassa, massa biologica di un sistema
+Per misurare biomassa possiamo usare le immagini satellitari e calcolare indici relativi
+Creiamo indice con bande a disposizione
+Banda nir che le piante riflettono molto e l'altro è il rosso e blu. 
+Rosso assorbito per inizio avvio fotosintesi per catena elettroni.
+Prendiamo ad es. nir e rosso. considero un albero in corrispondenza di ogni banda. Vediamo comportamento riflettanza per pianta. es. 0 - 100.
+In nir valori molto alti, es. 90. in rosso poca riflessione, valore basso, es. 10. vogliamo unico nuovo livello che ci informi.
+Si fa operazione matematica 90 - 10 = 80 (valore del pixel). Indice come differenza di vegetazione. detto Differce Vegetation Index (DVI).
+Cosa succede: Mesofillo fogliare pianta morta crollano. Cambio riflettanza nir. divent ad es. 60. in rosso avrò invece and es. 30. Se faccio differenza in questo caso avrò 30.
+Così con il DVI posso far calcoli di biomassa in data area A. si può anche fare col normalizzato NDVI.
+Se faccio un grafico dove metto in X le bande e in Y la lunghezza d'onda ottengo in immagine quella che si chiama firma spettrale.
+Ho firme diverse fra pianta viva e morta. spazio fra le 2 firme è detta red edge. indica sanità della pianta.
+Per calcolo indici si usano maggiormente rosso e nir.
+
+# Richiamo pacchetti terra e imageRy
+library (terra)
+library (imageRy)
+
+Prima funzione da usare è im.list()
+
+# Lista dei file
+im.list ()
+
+# Assegno immagine a oggetto
+# Richiamo oggetto
+
+m1992 <- im.import ("matogroaso_l5_1992219_lrg.jpg")
+m1992
+
+Abbiamo a disposizione 3 bande: Falso colore.
+# Bande
+# Banda 1 Nir
+# Banda 2 Rosso
+# Banda 3 Verde
+
+# Facciamo dei plot
+
+# plotter i dati
+im.plotRGB (m1992, r = 1, g = 2, b = 3)
+
+Il rosso indica la foresta pluviale nel 1992
+Se metto nir su verde ottengo verde fluo.
+
+# Nuovo plot
+im.plotRGB (m1992, 2, 1, 3)
+
+# Il colore rosa indica le zone pre antropizzazione. verde sono zone vegetazione.
+# Voglio vedere suolo nudo.
+
+# Se metto nir su blu...
+# Nuovo plot/immagine
+
+im.plotRGB (m1992, 2, 3, 1)
+
+# Il giallo evidenzia zone dove uomo ha messo le mani. Anche il fiume appare giallo... come mai?
+# Acqua in nir assorbe tutto, in false color diventa nera, perché qua non è così?, c'è molto sedimento, in quel momento.
+# Facciamo confronto fra 1992 e 2006
+
+m2006 <- im.import ("matogroaso_ast_2006209_lrg.jpg")
+m2006
+
+# Vediamo come sia drasticamente cambiata la situazione.forest distrutta.
+# Posso confrontare le immagini con un par.
+
+par(mfrow=c(1,2))
+im.plotRGB (m1992, 1,2,3)
+im.plotRGB (m2006, 1,2,3)
+
+dev.off() # per pulire 
+
+# nir su verde 
+im.plotRGB (m2006, 2,1,3)
+
+# nir ontop blue
+im.plotRGB (m2006, 2,3,1)
+
+# Metto tutte le 6 immagini insieme
+# Faccio un grande par
+
+par(mfrow=c(2,3))
+im.plotRGB (m1992, 1,2,3) # 1992 nir su rosso
+im.plotRGB (m1992, 2,1,3) # 1992 nir su verde
+im.plotRGB (m1992, 2,3,1) # 1992 nir su blu
+im.plotRGB (m2006, 1,2,3) # 2006 nir su rosso
+im.plotRGB (m2006, 2,1,3) # 2006 nir su verde
+im.plotRGB (m2006, 2,3,1) # 2006 nir su blu
+
+# Posso plottare anche la prima Banda...  nir.
+im.plot(m2006[[1]])
+
+
+
+# Su NASA visibile earth vediamo le immagini.
