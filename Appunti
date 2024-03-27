@@ -384,7 +384,7 @@ im.list ()
 # Assegno immagine a oggetto
 # Richiamo oggetto
 
-m1992 <- im.import ("matogroaso_l5_1992219_lrg.jpg")
+m1992 <- im.import ("matogrosso_l5_1992219_lrg.jpg")
 m1992
 
 Abbiamo a disposizione 3 bande: Falso colore.
@@ -416,7 +416,7 @@ im.plotRGB (m1992, 2, 3, 1)
 # Acqua in nir assorbe tutto, in false color diventa nera, perché qua non è così?, c'è molto sedimento, in quel momento.
 # Facciamo confronto fra 1992 e 2006
 
-m2006 <- im.import ("matogroaso_ast_2006209_lrg.jpg")
+m2006 <- im.import ("matogrosso_ast_2006209_lrg.jpg")
 m2006
 
 # Vediamo come sia drasticamente cambiata la situazione.forest distrutta.
