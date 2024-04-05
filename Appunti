@@ -50,6 +50,7 @@ plot(flowers, insects, pch=19, cex=.5)
 plot(flowers, insects, pch=19, cex=.5, col="chocolate1") 
 
 
+
 # Come installare nuovi pacchetti di R
 # Cominciamo installiando il pacchetto "terra" con il seguente comando
 
@@ -452,7 +453,13 @@ im.plot(m2006[[1]])
 
 # Su NASA visibile earth vediamo le immagini.
 
+
+04/04/24
+
 Spiegazione gioco numeri per Pasqua...
+Si tratta di un gioco linguistico per cui si può proseguire all'infinito giucando sulla descrizione verbale dei numeri.
+il primo numero è 3, che si può dire come " un 3, 1 3" ecc...
+
 3
 13
 1113
@@ -464,28 +471,27 @@ Spiegazione gioco numeri per Pasqua...
 Giorni in cui il Prof sarà assente: 13/04-16/04
 Non ci vediamo lunedì 15 e martedì 16
 
-# Calcolo DVI (Difference Vvegetation Index)
+# Calcolo DVI (Difference Vegetation Index)
 
 dvi1992 = m1992[[1]] - m1992[[2]]
 # via alternativa di coding: m1992$matogrosso-2219_lrg_1 - m1992$matogrosso-2219_lrg_2
+# Noi non usiamo questo metodo, usiamo invece il precedente (senza commento)
 
 #  Formiamo una rampPalette nuova da usare per questo lavoro
 cl<-colorRampPalette(c("darkblue", "yellow", "red", "black")) (100)
 # Plottiamo 1992
-> plot(dvi1992, col = cl)
+plot(dvi1992, col = cl)
 # Plottiamo 2006 e importiamo immagine del 2006 (dvi2006)
-
 m2006 <-im.import("matogrosso_ast_2006209_lrg.jpg")
 dvi2006 = m2006[[1]] - m2006[[2]]
 
 # Esercizio: Plottare il dvi1992 affianco a quello del dvi2006
-
 par(mfrow=c(1,2))
 plot(dvi1992, col=cl)
 plot(dvi2006, col=cl)
 
 # Normalizzazione di un indice.
-Come si fa.
+Come si fa
 Prendo immagine a 8 bit, faccio Nir . Red / Nir + Red
 255/255 = 1 massimo ndvi
 -255/255 = minimo ndvi
