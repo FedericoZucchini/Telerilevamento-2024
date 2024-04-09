@@ -514,6 +514,13 @@ plot(ndvi2006, col=cl)
 
 
 
+09/04/24
+Verde è zona nevosa, blu è bosco di Oetzi, colore viola indica la zona urbana.
+Immagin satelitare classificata. Facciamo una classificazione.
+Vogliamo creare dei siti di prova. Training Sites.
+Identifico 2 cluster di punti. 1 e 2.
+k-means
+
 
 
 
