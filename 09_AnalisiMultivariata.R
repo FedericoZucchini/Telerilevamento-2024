@@ -36,6 +36,21 @@ im.plotRGB(sentdo, r=3, g=4, b=2)
 # Vediamo correlazione fra le immagini
 pairs(sentdo)
 
+# pca
+picmage<-im.pca(sentdo)
+
+tot <- sum()
+N*100/tot # Da la variabilità spiegata dal primo asse
+
+# Plot della pca usando viridis
+
+vir <- colorRampPaeltte(viridis(7)) (100)
+plot(pcimage, col= vir)
+plot (pcimage, col= viridis(100))
+plot (pcimage, col=plasma(100)) # Esempio con un'altra legenda di colori
+
+
+
 
 
 
