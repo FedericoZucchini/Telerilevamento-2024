@@ -1,0 +1,16 @@
+"Bagno di sangue", "Sex And Violence a manetta"
+Come importare dti da fuori
+Si deve stabilire una cartella del PC dove mettere i dati che si usano, in questo caso io scelgo di usare la cartella "Immagini" (vedremo come si segue il percorso ne PC).
+!: Come fare a trovare il Prof su GitHUb: Cercare sulla barra di ricerca con la lente di ingrndimento e cercare: user:ducciorocchini
+
+Inizio lezione:
+Andare su R e richiamare le librerie già installate:
+library(terra)
+library(ImageRy)
+
+Andare su R e digitare i seguenti comandi:
+install.packages("RNetCDF")
+library(RNetCDF)
+setwd("/home/federico/Downloads") 
+# make use of slash instead of backslash
+# Example: C://Documents/ instead of C:\\Documents\ 
