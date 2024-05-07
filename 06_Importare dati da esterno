@@ -1,5 +1,5 @@
 "Bagno di sangue", "Sex And Violence a manetta"
-Come importare dti da fuori
+Come importare dati da fuori
 Si deve stabilire una cartella del PC dove mettere i dati che si usano, in questo caso io scelgo di usare la cartella "Immagini" (vedremo come si segue il percorso ne PC).
 !: Come fare a trovare il Prof su GitHUb: Cercare sulla barra di ricerca con la lente di ingrndimento e cercare: user:ducciorocchini
 
@@ -8,9 +8,79 @@ Andare su R e richiamare le librerie già installate:
 library(terra)
 library(ImageRy)
 
+im.list()
+
+# importing data
+EN01 <- im.import("EN_01.png")
+EN13 <- im.import("EN_13.png")
+
+par(mfrow=c(2,1))
+im.plotRGB.auto(EN01)
+im.plotRGB.auto(EN13)
+
+difEN = EN01[[1]] - EN13[[1]]
+cl <- colorRampPalette(c("blue","white","red")) (100)
+plot(difEN, col=cl)
+
+## Ice melt in Greenland
+g2000 <- im.import("greenland.2000.tif")
+clg <- colorRampPalette(c("black","blue","white","red")) (100)
+plot(g2000, col=clg)
+
+g2005 <- im.import("greenland.2005.tif")
+g2010 <- im.import("greenland.2010.tif")
+g2015 <- im.import("greenland.2015.tif")
+
+par(mfrow=c(1,2))
+plot(g2000, col=clg)
+plot(g2015, col=clg)
+
+par(mfrow=c(2,2))
+plot(g2000, col=clg)
+plot(g2005, col=clg)
+plot(g2010, col=clg)
+plot(g2015, col=clg)
+
+# stack
+greenland <- c(g2000, g2005, g2010, g2015)
+plot(greenland, col=clg)
+
+difg = greenland[[1]] - greenland[[4]]
+clgreen <- colorRampPalette(c("red","white","blue")) (100)
+plot(difg, col=clgreen)
+
+im.plotRGB(greenland, r=1, g=2, b=4) # g2000 on red, g2005 on green, g2015 on blue
+
+
 Andare su R e digitare i seguenti comandi:
 install.packages("RNetCDF")
 library(RNetCDF)
 setwd("/home/federico/Downloads") 
 # make use of slash instead of backslash
 # Example: C://Documents/ instead of C:\\Documents\ 
+
+library(terra)
+library(imageRy)
+
+setwd("/home/duccio/Downloads")
+# make use of slash instead of backslash
+# Example: C://Documents/ instead of C:\\Documents\ 
+
+eclissi <- rast("eclissi.jpeg")
+
+# plotting the data
+im.plotRGB(eclissi, 1, 2, 3)
+im.plotRGB(eclissi, 3, 2, 1)
+im.plotRGB(eclissi, 2, 3, 1)
+im.plotRGB(eclissi, 2, 1, 3)
+
+# band difference
+dif = eclissi[[1]] - eclissi[[2]]
+plot(dif)
+
+# import another image
+ocean <- rast("oceanisgreening_2022_lrg.jpg")
+im.plotRGB(ocean, 1, 2, 3)
+im.plotRGB(ocean, 2, 1, 3)
+
+
