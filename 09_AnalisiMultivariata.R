@@ -51,7 +51,14 @@ plot (pcimage, col=plasma(100)) # Esempio con un'altra legenda di colori
 
 
 
+# pca
+pcimage <- im.pca(sentdo)
 
+tot <- sum(1314.33400, 551.50879, 39.48238, 27.35780)
+1314.33400 * 100 / tot
+
+plot(pcimage, col=viridis(100))
+plot(pcimage, col=plasma(100))
 
 
 
