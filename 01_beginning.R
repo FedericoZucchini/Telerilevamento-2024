@@ -1,4 +1,4 @@
--APPUNTI 1a lezione (originari)
+APPUNTI 1a lezione (originari)
 # First R script
 # Usiamo R come una semplice calcolatrice
 
