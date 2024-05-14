@@ -1,29 +1,37 @@
-APPUNTI 1a lezione (originari)
-#First R script
-a <- 6*7
-b <- 5*8
-a+b
+-APPUNTI 1a lezione (originari)
+# First R script
+# Usiamo R come una semplice calcolatrice
+
+a <- 6*7 # assegniamo all'oggetto a il valore del prodotto dei numeri 6 e 7
+b <- 5*8 # assegnamo all'oggetto b il valore del prodotto dei numeri 5 e 8
+a+b # chiamiamo R a risolvere l'operazione di somma fra a e b scrivendo semplicemente la quantità a+b
+
 # R as a calculator
-#arrays
-flowers <-c(3,6,8,10,15,18)
+
+# arrays, costruiamo gli arrays a cui diamo i nomi di "fiori"
+flowers <-c(3,6,8,10,15,18) # Utilizziamo la funzione "concatenate" e richiamiamo l'oggetto che abbiamo appena creato
 flowers
 
+#Facciamo la stessa cosa MA usiamo gli insetti
 insects <-c(10,16,25,42,61,73)
 insects
-plot(flowers, insects)
-#changin plot parameters
-#symbols
+
+plot(flowers, insects) #Vogliamo mettere insieme nello stesso grafico le variabili fiori e insetti come x e y
+
+#changing plot parameters, possiamo cambiare i parametri del grafico, il plot
+#symbols, possiamo cambiare i simboli del grafico, cambiandone la resa grafica e il "punto" sul grafico
+#In particolare con pch cambiamo la rappresentazione
+
 plot(flowers, insects, pch=19)
 
 #symbols dimensions
+#In particolare con cex cambiamo la dimensione
 
 plot(flowers, insects, pch=19, cex=2)
 
 #color
-
+#In particolare con col cambiamo il colore 
 plot(flowers, insects, pch=19, cex=2, col="chocolate1")
-
-
 
 
 APPUNTI 1a lezione (ordinati e arricchiti)
