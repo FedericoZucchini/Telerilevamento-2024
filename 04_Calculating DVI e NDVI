@@ -25,28 +25,45 @@ im.list()
 
 # importing data
 # https://visibleearth.nasa.gov/images/35891/deforestation-in-mato-grosso-brazil/35892l
+# Il link sopra riportato è il link da usare per le immagini
+# chiamo l'oggetto che sto impotando così da poterlo maneggiare su R
+
 m1992 <- im.import("matogrosso_l5_1992219_lrg.jpg")
+
+# definisco le bande di colore identificandole secondo la scala RGB
 
 # band 1 = nir = R
 # band 2 = red = G
 # band 3 = green = B
 
+# plotto l'oggetto selezionato con le bande di colore 1,2,3
+
 im.plotRGB(m1992, 1, 2, 3)
 
-# Exercise: put the nir ontop of the G component
+# Exercise: put the nir ontop of the G component 
+# voglio mettere la banda del nir, vicino infrarosso, al posto della componente G, verde, della banda RGB
 im.plotRGB(m1992, 2, 1, 3)
 
 # nir ontop of the B component
+# voglio mettere la banda del nir, vicino infrarosso, al posto della componente B, blu, della banda RGB
 im.plotRGB(m1992, 2, 3, 1)
 
 # importing the 2006 image
+# importo l'immagine su cui voglio lavorare e nomino l'oggetto su cui lavorerò
+
 m2006 <- im.import("matogrosso_ast_2006209_lrg.jpg")
+
 # nir on the green component of RGB 
+# imposto la banda del nir sulla componente Verde dell'RGB
 im.plotRGB(m2006, 2, 1, 3)
+
 # nir on the blue component of RGB
+# imposto la banda del nir sulla componente Blu dell'RGB
 im.plotRGB(m2006, 2, 3, 1)
 
 # multiframe
+# costruisco un multiframe con le rappresentazioni che ho a disposizione su cui ho lavorato
+
 par(mfrow=c(2,3))
 im.plotRGB(m1992, 1, 2, 3) # nir on R 1992
 im.plotRGB(m1992, 2, 1, 3) # nir on G 1992
@@ -55,21 +72,33 @@ im.plotRGB(m2006, 1, 2, 3) # nir on R 2006
 im.plotRGB(m2006, 2, 1, 3) # nir on G 2006
 im.plotRGB(m2006, 2, 3, 1) # nir on B 2006
 
-
+#---
 
 # Calcolo DVI (Difference Vegetation Index)
+# imposto l'operazione di calcolo del DVI facendo la differenza fra 2 bande, ad es. la 1 e la 2 dell'immagine del 1992 (posso riprodurre questo anche sulle altre combinazioni, compreso il 2006)
 
 dvi1992 = m1992[[1]] - m1992[[2]]
-# via alternativa di coding: m1992$matogrosso-2219_lrg_1 - m1992$matogrosso-2219_lrg_2
+
+# via alternativa di coding: uso direttamente le immagini con la banda relativa indicata
+
+dvi1992 = m1992$matogrosso-2219_lrg_1 - m1992$matogrosso-2219_lrg_2
+# dvi1992 = m1992$matogrosso~2219_lrg_1 - m1992$matogrosso~2219_lrg_2
+
 # Noi non usiamo questo metodo, usiamo invece il precedente (senza commento)
 
-#  Formiamo una rampPalette nuova da usare per questo lavoro
+#  Formiamo una rampPalette nuova da usare per questo lavoro, da usare quando si plotta il DVI
+
 cl<-colorRampPalette(c("darkblue", "yellow", "red", "black")) (100)
+
 # Plottiamo 1992
 plot(dvi1992, col = cl)
-# Plottiamo 2006 e importiamo immagine del 2006 (dvi2006)
+
+# Plottiamo 2006
+# importiamo immagine del 2006 (dvi2006)
+
 m2006 <-im.import("matogrosso_ast_2006209_lrg.jpg")
 dvi2006 = m2006[[1]] - m2006[[2]]
+plot(dvi2006, col=cl)
 
 # Esercizio: Plottare il dvi1992 affianco a quello del dvi2006
 par(mfrow=c(1,2))
@@ -77,8 +106,10 @@ plot(dvi1992, col=cl)
 plot(dvi2006, col=cl)
 
 # Normalizzazione di un indice.
-Come si fa
-Prendo immagine a 8 bit, faccio Nir . Red / Nir + Red
+# Come si fa
+# Prendo immagine a 8 bit, faccio Nir . Red / Nir + Red
+
+#Es. 
 255/255 = 1 massimo ndvi
 -255/255 = minimo ndvi
 
@@ -86,13 +117,17 @@ Prendo adesso un'immagine a 4 bit.
 15/15 = 1
 -15/15 = -1
 
-stackdvi<-c(dvi1992, dvi2006)
+
+stackdvi <-c(dvi1992, dvi2006)
 pirs(stackdvi)
 
 # dvi normalizzato
 
 ndvi1992 = dvi1992 / (m1992[[1]]+m1992[[2]])
 ndvi2006 = dvi2006 / (m2006[[1]]+m2006[[2]])
+
+# Facciamo pulizia col comando dev.off()
+dev.off()
 
 par(mfrow=c(1,2))
 plot(ndvi1992, col=cl)
