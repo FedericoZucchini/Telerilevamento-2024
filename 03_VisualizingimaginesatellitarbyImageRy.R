@@ -29,10 +29,12 @@ clg <- colorRampPalette(c("black", "grey", "light grey"))(3) #questa palette di 
 
 plot(b2, col=clg)
 
-# Per dimostrare quanto scritto sopra a proposito delle sfumature della palette... richiamo il comando aumentando il numero di fumature da 3 a 100, mantenendo il resto delle caratteristiche uguali
+# Per dimostrare quanto scritto sopra a proposito delle sfumature della palette... richiamo il comando aumentando il numero di sfumature da 3 a 100, mantenendo il resto delle caratteristiche uguali
 
 clg <- colorRampPalette(c("black", "grey", "light grey"))(100)
 plot(b2, col=clg)
+
+#In questo modo vedo chiaramente come l'aumento del numero di sfumature aumenta anche la qualità della rappresentazione colorata, meno a scatti e più uniforme
 
 # Creo un'altra possibile palette di colori da impiegare, ancora una volta provando a mantenere la distinzione fra 3 e 100 sfumature, il resto dei comandi rimane uguale
 
@@ -94,6 +96,7 @@ plot(b8, col=clch)
 # Lavoriamo come le immagini satellitari
 # Impieghiamo la funzione di associazione definendo il nuovo oggetto con un nuovo nome, es. stacksent, usando sempre la funzione c()
 # Plotto la nuova rappresentazione associata ad una Palette di colori a scelta
+# Costruisco l'oggetto stacksent
 
 stacksent <- c(b2, b3, b4, b8)
 plot(stacksent) #, col=clch)
@@ -109,6 +112,8 @@ plot(stacksent[[4]], col=clch)
 
 # Faccio una nuova rappresentazione impiegando in dettaglio la banda RGB (Rosso, Verde, Blue)
 # Scrivo i comandi per la rappresentazione dell'oggetto stacksent con relative corrispondenze alle bande di colore impiegate
+# Plotto le bande RGB
+
 # stacksent[[1]] = b2 = blue
 # stacksent[[2]] = b3 = green
 # stacksent[[3]] = b4 = red
@@ -132,7 +137,7 @@ im.plotRGB(stacksent, 4, 2, 1)
 
 dev.off()
 
-# Faccio un'altra seguente rappresentazione
+# Faccio un'altra rappresentazione, la seguente
 
 im.plotRGB(stacksent, 4, 3, 2)
 
@@ -147,7 +152,7 @@ im.plotRGB(stacksent, 4, 3, 2)
 
 dev.off()
 
-#Questa volta faccio qualcosa di diverso, utilizziamo le bande di verde e vicino infrarosso (G e nir)
+# Questa volta faccio qualcosa di diverso, utilizziamo le bande di verde e vicino infrarosso (G e nir)
 
 im.plotRGB(stacksent, 3, 4, 2)
 
