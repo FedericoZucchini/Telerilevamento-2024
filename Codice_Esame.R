@@ -44,6 +44,7 @@ setwd("C:/Users/Federico/Documenti")
 #Lo scopo da portare a termine è quello di prelevare la banda b8, cioè quella del nir, dalle immagini in falsi colori per importarla in un unico oggetto assieme alle altre bande b4, b3 e b2. Voglio quindi costruire un’unica immagine con 4 bande: b2, b3, b4, b8 (blue, red, green, nir).
 #Si importano le dalla cartella indicata nella directory tramite la funzione "rast()" del pacchetto "terra", che permette di importare delle immagini creando un oggetto Spatraster.
 #Nomino gli oggetti caricati nello spazio di lavoro come “VCanno” (Vaia in Cadore + anno di raccolta dell’immagine).
+#Commento generalmente solo il primo comando di ogni azione come esemplificazione di come si procede per rendere più snella la lettura del codice.
 
 VC2017<-rast("2017-06-08-23_59_Sentinel-2_L2A_True_color.jpg")      
 #Importazione dell'immagine jpg nell'oggetto chiamato "VC2017" per l'anno 2017.
@@ -55,42 +56,25 @@ VCNIR2017<-rast("2017-06-08-23_59_Sentinel-2_L2A_False_color.jpg")
 #Le bande di colore di questo oggetto sono b8, b4 e b3 (nir, red, green).
 VCNIR2017
 #Vedo tutte le informazioni disponibili per il l’oggetto che ho appena caricato e creato
+
 VC2019 <-rast("2019-07-23-23_59_Sentinel-2_L2A_True_color.jpg")
-#Importazione dell'immagine jpg nell'oggetto chiamato "VC2019" per l'anno 2019.
-#Le bande di colore di questo oggetto sono b4, b3 e b2 (red, green, blue; RGB).  
 VC2019
-#Vedo tutte le informazioni disponibili per il l’oggetto che ho appena caricato e creato
 VCNIR2019<-rast("2019-07-23-23_59_Sentinel-2_L2A_False_color.jpg")
-#Importazione dell'immagine jpg nell'oggetto chiamato "VCNIR2019" per l'anno 2019.
-#Le bande di colore di questo oggetto sono b8, b4 e b3 (nir, red, green).
 VCNIR2019
-#Vedo tutte le informazioni disponibili per il l’oggetto che ho appena caricato e creato
 VC2022 <-rast("2022-06-12-23_59_Sentinel-2_L2A_True_color.jpg")
-#Importazione dell'immagine jpg nell'oggetto chiamato "VC2022" per l'anno 2022.
-#Le bande di colore di questo oggetto sono b4, b3 e b2 (red, green, blue; RGB).  
 VC2022
-#Vedo tutte le informazioni disponibili per il l’oggetto che ho appena caricato e creato
 VCNIR2022<-rast("2022-06-12-23_59_Sentinel-2_L2A_False_color.jpg")
-#Importazione dell'immagine jpg nell'oggetto chiamato "VCNIR2022" per l'anno 2022.
-#Le bande di colore di questo oggetto sono b8, b4 e b3 (nir, red, green).
 VCNIR2022
-#Vedo tutte le informazioni disponibili per il l’oggetto che ho appena caricato e creato
 
 #Warning unknown extend: Motivazione è l’assente georeferenziazione delle immagini impiegate. #Un avviso di "Warning" non implica un "Error, e quindi l’impossibilità di svolgimento di un comando o comunque uno STOP nell’esecuzione del codice ma ci avvisa di un potenziale problema.
 
 par(mfrow=c(3,1))
 #Funzione impiegata per la creazione di una finestra grafica in una griglia a righe e colonne andando a specificarne il numero impiegato.
-#In questo caso sono 3 righe e 1 colonna, così da disporre più grafici in una sola finestra.
+#In questo caso sono 3 righe e 1 colonna, così da disporre più grafici in una sola finestra in colonna.
 #Dopo il comando "par()" si vanno ad inserire tutti i grafici che si vogliono andare a visualizzare mediante il comando "plot()".
 
 #Le immagini vengono visualizzate tramite la funzione "plot()".
 #Faccio un par in colonna delle immagini in colori veri.
-plot(VC2017)
-plot(VC2019)
-plot(VC2022)
-
-par(mfrow=c(1,3))
-#Faccio un par in riga delle immagini in colori veri.
 plot(VC2017)
 plot(VC2019)
 plot(VC2022)
@@ -101,25 +85,16 @@ plot(VCNIR2017)
 plot(VCNIR2019)
 plot(VCNIR2022)
 
-par(mfrow=c(1,3))
-#Faccio un par in riga delle immagini in falsi colori.
-plot(VCNIR2017)
-plot(VCNIR2019)
-plot(VCNIR2022)
-
 #Procedo con l’estrazione degli oggetti di interesse per la prosecuzione del progetto.
 b17r<-VC2017[[1]]
 b17r
 #Tramite le parentesi quadre si specifica l'oggetto da estrarre (in questo caso l'oggetto 1, ovvero la banda 4 del rosso, di "VC2017") per assegnarlo ad un nuovo oggetto chiamato "b17r".
 b17g<-VC2017[[2]]
 b17g
-#Tramite le parentesi quadre si specifica l'oggetto da estrarre (in questo caso l'oggetto 2, ovvero la banda 3 del verde, di "VC2017") per assegnarlo ad un nuovo oggetto chiamato "b17g".
 b17b<-VC2017[[3]]
 b17b
-#Tramite le parentesi quadre si specifica l'oggetto da estrarre (in questo caso l'oggetto 3, ovvero la banda 2 del blu, di "VC2017") per assegnarlo ad un nuovo oggetto chiamato "b17b".
 b17nir<-VCNIR2017[[1]]
 b17nir
-#Tramite le parentesi quadre si specifica l'oggetto da estrarre (in questo caso l'oggetto 1, ovvero la banda 8 del nir, di "VCNIR2017") per assegnarlo ad un nuovo oggetto chiamato "b17nir".
 
 #Opero lo stesso procedimento sopra descritto per tutti gli anni rimasti (2019, 2022).
 #Opero sull’anno 2019
@@ -162,24 +137,11 @@ im.plotRGB(VaiaCadore17, 4,2,3)
 im.plotRGB(VaiaCadore19, 4,2,3)  
 im.plotRGB(VaiaCadore22, 4,2,3) 
 
-#Faccio i par in riga delle combinazioni precedenti.
-#Nir su red
-par(mfrow=c(1,3))
-im.plotRGB(VaiaCadore17, 4,2,3)
-im.plotRGB(VaiaCadore19, 4,2,3)  
-im.plotRGB(VaiaCadore22, 4,2,3) 
-
 #Nir sul blu: la vegetazione sarà visivamente di colore blu. Inoltre, il suolo diventerà di colore giallo andando a fornire un ottimo contrasto tra vegetazione e suolo. 
 par(mfrow=c(3,1))
 im.plotRGB(VaiaCadore17, 1,2,4)
 #1,2,4 specificano rispettivamente red, green, nir dell'oggetto "VaiaCadore17".
 #Procedo a plottare gli anni successivi rimasti.
-im.plotRGB(VaiaCadore19, 1,2,4) 
-im.plotRGB(VaiaCadore22, 1,2,4) 
-
-#Nir sul blu
-par(mfrow=c(1,3))
-im.plotRGB(VaiaCadore17, 1,2,4)
 im.plotRGB(VaiaCadore19, 1,2,4) 
 im.plotRGB(VaiaCadore22, 1,2,4) 
 
@@ -190,12 +152,6 @@ im.plotRGB(VaiaCadore17, 1,4,3)
 #Procedo a plottare gli anni successivi rimasti.
 im.plotRGB(VaiaCadore19, 1,4,3) 
 im.plotRGB(VaiaCadore22, 1,4,3) 
-
-#Nir sul green
-par(mfrow=c(1,3))
-im.plotRGB(VaiaCadore17, 1,4,3)
-im.plotRGB(VaiaCadore19, 1,4,3) 
-im.plotRGB(VaiaCadore22, 1,4,3)
 
 ###CORRELAZIONE TRA IMMAGINI
 
@@ -269,23 +225,24 @@ perc2022
 
 #Riscrivo il nome degli oggetti aventi le percentuali per visualizzare il dato.
 perc2017
-#I risultati ottenuti sono: [1] 19.42777, [2] 38.40266, [3] 42.16958.
+#I risultati ottenuti sono: [1] 19.42777, [2] 42.16958, [3] 38.40266.
 #I numeri tra le parentesi quadre indicano la percentuale appartenente alla relativa classe/cluster.
 perc2019
-#I risultati ottenuti sono: [1] 40.70767, [2] 14.66296 , [3] 44.62937.
+#I risultati ottenuti sono: [1] 14.66296, [2] 44.62937 , [3] 40.70767.
 perc2022
-#I risultati ottenuti sono: [1] 48.07092, [2] 11.45576, [3] 40.47332.
+#I risultati ottenuti sono: [1] 40.47332, [2] 48.07092, [3] 11.45576.
 
 ###GGPLOT E DATAFRAME 
 
-class<-c("soil", "grass", "forest")
-#Creo il vettore "class" mediante "c()" (concatenate, funzione già vista in precedenza) a cui si attribuiscono 3 nomi: "soil", "grass", "forest" (suolo, prato, foresta).
-#I nomi vanno messi tra virgolette in quanto tali. Questi nomi rappresenteranno i cluster ottenuti durante la classificazione. 
-y2017<-c( 19.42777, 38.40266, 42.16958)
+class<-c("soil", "forest", "grass")
+#Creo il vettore "class" mediante "c()" (concatenate, funzione già vista in precedenza) a cui si attribuiscono 3 nomi: "soil", "forest", "grass" (suolo, foresta, prato).
+#I nomi vanno messi tra virgolette in quanto tali.
+#Questi nomi rappresenteranno i cluster ottenuti durante la classificazione. 
+y2017<-c( 19.42777, 42.16958, 38.40266)
 #Vettore a cui sono attribuite le relative percentuali calcolate in precedenza (vengono quindi inserite le percentuali ottenute in "perc2018" che corrispondono al numero di pixel corrispondenti a ogni classe per le due immagini; quindi si avranno 3 percentuali per via delle 3 classi ottenute).
 #Procedo con la stessa operazione appena fatta per gli anni successivi rimasti. 
-y2019<-c( 40.70767, 14.66296, 44.62937)
-y2022<-c( 48.07092, 11.45576, 40.47332)
+y2019<-c( 14.66296, 44.62937, 40.70767)
+y2022<-c( 40.47332, 48.07092, 11.45576)
 
 #Richiamo gli oggetti appena creati per verificare che tutto stia funzionando a dovere.
 y2017
@@ -296,7 +253,7 @@ y2022
 #I dati sono poi impiegati per creare tre grafici a barre per confrontare le distribuzioni delle classi nelle immagini a disposizione.  
 
 DATAFRAME<-data.frame(class,y2017,y2019,y2022)
-#All’interno del Dataframe viene inserito l'oggetto "class" (ovvero "soil", "grass", "forest"), e gli oggetti "y2017", "y2019", "y2022" con le percentuali delle classificazioni. 
+#All’interno del Dataframe viene inserito l'oggetto "class" (ovvero "soil", "forest", "grass"), e gli oggetti "y2017", "y2019", "y2022" con le percentuali delle classificazioni. 
 DATAFRAME
 #Richamo il dataframe per vedere i risultati riassunti nell’output.
 
@@ -349,7 +306,7 @@ plot(diffnir1722, col=clblu)
 cividis<-colorRampPalette(viridis::cividis(100))(100)
 #Ho creato una palette di colori nominata "cividis" andando a generare 100 colori diversi dalla palette "cividis" che è una palette prefatta dal pacchetto "viridis".
 #colorRampPalette è una funzione che premette la formazione di un gradiente di colore che in questo caso è di 100 sfumature.
-par(mfrow=c(1,3))
+par(mfrow=c(3,1))
 #Faccio ancora una volta un par, sempre 1 colonna e 3 righe.
 plot(diffnir1719, col=cividis)   
 plot(diffnir1922, col=cividis)
@@ -363,6 +320,7 @@ plot(diffnir1722, col=cividis)
 #Si può usare anche la banda del blu per il calcolo in alternativa. 
 #Il valore DVI varia da +255 a -255 perchè la risoluzione radiometrica è di 8bit, quindi 255 possibilità. 
 dvi2017 = VaiaCadore17[[4]] - VaiaCadore17[[1]]
+dvi2017
 
 #Differenza tra le bande del vicino infrarosso nir [[4]] e del rosso red [[1]].
 #I risultati del 2017 sono: min -207, max 221.
@@ -376,19 +334,13 @@ dvi2022
 clyellow<-colorRampPalette(c("darkblue", "yellow", "red", "black"))(100)   
 #Crea una rampalette di colori che va dal blu scuro, al giallo, al rosso e al nero con 100 gradazioni.
 
-par(mfrow=c(1,3))
+par(mfrow=c(3,1))
 #Faccio nuovamente un par in colonna             
 plot(dvi2017, col=clyellow)
 #Le immagini vengono visualizzate attraverso la funzione "plot()" e rappresentano l'indice di differenza di vegetazione per l'immagine del 2018, in questo caso.
 #Procedo con la stessa operazione appena fatta per gli anni successivi rimasti.
 plot(dvi2019, col=clyellow)  
-plot(dvi2022, col=clyellow)  
-
-par(mfrow=c(3,1))
-#Faccio un par in colonna
-plot(dvi2017, col=clyellow)
-plot(dvi2019, col=clyellow)  
-plot(dvi2022, col=clyellow)  
+plot(dvi2022, col=clyellow)    
 
 #Visualizzazione dei grafici costruiti in precedenza con la palette di colori "cividis" creata poco fa per i soggetti daltonici.
 par(mfrow=c(3,1))
@@ -396,12 +348,6 @@ par(mfrow=c(3,1))
 plot(dvi2017, col=cividis)
 #Visualizzazione attraverso la funzione "plot()" dell'oggetto "dvi2017" con la palette di colori "cividis".
 #Procedo con la stessa operazione appena fatta per gli anni successivi rimasti.
-plot(dvi2019, col=cividis)
-plot(dvi2022, col=cividis)
-
-par(mfrow=c(1,3))
-#Faccio nuovamente un par in riga 
-plot(dvi2017, col=cividis)
 plot(dvi2019, col=cividis)
 plot(dvi2022, col=cividis)
 
@@ -470,76 +416,89 @@ plot(diffNDVI1722, col=cividis)
 #E' una analisi delle componenti principali dell'immagine che ci consente di portare un sistema a più bande in una sola.
 #Ci permette così di trasformare i dati presenti in un oggetto in un nuovo set di variabili chiamate “componenti principali” che spiegheranno la variabilità dei dati originali.  
 
-pcimage18<-im.pca(VaiaCadore18)
-#La funzione im.pca() ci fornisce i valori delle componenti principali, ovvero: , , , 
+pcimage17<-im.pca(VaiaCadore17)
+pcimage17
+#La funzione im.pca() ci fornisce i valori delle componenti principali, ovvero: 63.113702, 35.494496, 7.152123, 3.962982.
+#I valori delle componenti principali sono:  63.113702, 35.494496, 7.152123, 3.962982.
 pcimage19<-im.pca(VaiaCadore19)
-#I valori delle componenti principali sono: , , , 
+pcimage19
+#I valori delle componenti principali sono:  63.881631, 39.625920, 6.937409, 3.645387.
 pcimage22<-im.pca(VaiaCadore22)
-#I valori delle componenti principali sono: , , , 
+pcimage22
+#I valori delle componenti principali sono: 65.461322, 38.640064, 6.430111, 3.706848.
 
-tot18<-sum( , , , )
-#Sommatoria delle componenti principali per l'anno 2018; ovvero la sommatoria delle varianze spiegate dalle prime 4 componenti principali ottenute dalla PCA. 
-var18x<-*100/tot18
+tot17<-sum(63.113702, 35.494496, 7.152123, 3.962982)
+tot17
+#Sommatoria delle componenti principali per l'anno 2017; ovvero la sommatoria delle varianze spiegate dalle prime 4 componenti principali ottenute dalla PCA. 
+var17x<-63.113702*100/tot17
 #Calcolo della varianza spiegata dalle 3 componenti principali, in percentuale. 
-var18y<-*100/tot18
-var18z<-*100/tot18
-var18k<-*100/tot18
+var17y<-35.494496*100/tot17
+var17z<-7.152123*100/tot17
+var17k<-3.962982*100/tot17
 
-var18x   #Variabilità spiegata dal primo asse: . 
-var18y   #Variabilità spiegata dal secondo asse: .
-var18z   #Variabilità spiegata dal terzo asse: .
-var18k   #Variabilità spiegata dal quarto asse: .
+var17x   #Variabilità spiegata dal primo asse: 57.52078. 
+var17y   #Variabilità spiegata dal secondo asse: 32.3491.
+var17z   #Variabilità spiegata dal terzo asse: 6.518326.
+var17k   #Variabilità spiegata dal quarto asse: 3.611796.
 
-tot19<-sum( , , , )
-var19x<-*100/tot19
-var19y<-*100/tot19
-var19z<-*100/tot19
-var19k<-*100/tot19
+tot19<-sum( 63.881631, 39.625920, 6.937409, 3.645387)
+tot19
+var19x<-63.881631*100/tot19
+var19y<-39.625920*100/tot19
+var19z<-6.937409*100/tot19
+var19k<-3.645387*100/tot19
 
-var19x   #Variabilità spiegata dal primo asse: .
-var19y   #Variabilità spiegata dal secondo asse: .
-var19z   #Variabilità spiegata dal terzo asse: .
-var19k   #Variabilità spiegata dal quarto asse: .
+var19x   #Variabilità spiegata dal primo asse:  55.99214.
+var19y   #Variabilità spiegata dal secondo asse: 34.73205.
+var19z   #Variabilità spiegata dal terzo asse: 6.080627.
+var19k   #Variabilità spiegata dal quarto asse: 3.195176.
 
-tot22<-sum( , , , ) 
-var22x<-*100/tot19
-var22y<-*100/tot19
-var22z<-*100/tot19
-var22k<-*100/tot19
+tot22<-sum( 65.461322, 38.640064, 6.430111, 3.706848) 
+tot22
+var22x<-65.461322*100/tot19
+var22y<-38.640064*100/tot19
+var22z<-6.430111*100/tot19
+var22k<-3.706848*100/tot19
 
-var22x   #Variabilità spiegata dal primo asse: 93.61739.
-var22y   #Variabilità spiegata dal secondo asse: 25.08918.
-var22z   #Variabilità spiegata dal terzo asse: 6.030021.
-var22k   #Variabilità spiegata dal quarto asse: 1.673006.
+var22x   #Variabilità spiegata dal primo asse: 57.37674.
+var22y   #Variabilità spiegata dal secondo asse: 33.86795.
+var22z   #Variabilità spiegata dal terzo asse: 5.635982.
+var22k   #Variabilità spiegata dal quarto asse: 3.249046.
 
 #Vado a visualizzare i grafici precedenti con la palette di colori "cividis" creata in precedenza per i soggetti affetti da daltonismo.
-plot(pcimage18, col=cividis)
+plot(pcimage17, col=cividis)
 #Notiamo come PC3 indichi una bassa relazione.
 #Procedo con la stessa operazione appena fatta per gli anni successivi rimasti.
 plot(pcimage19, col=cividis)            
 plot(pcimage22, col=cividis)
  
 #Si sceglie di procedere con l'analisi sulla prima componente (pc1) ottenuta in precedenza dalla funzione "im.pca()" poichè è la più rappresentativa, attraverso la funzione "focal()" che crea una finestra di calcolo che mi darà la mappa della variabilità dell'immagine. 
-pca1_2018<-pcimage18[[1]]
-#Seleziono la prima componente (quella con la maggiore variabilità spiegata) ottenuta dalla funzione "im.pca()" dell'oggetto pcimage18, attraverso le parentesi quadre.
+pca1_2017<-pcimage17[[1]]
+pca1_2017
+#Seleziono la prima componente (quella con la maggiore variabilità spiegata) ottenuta dalla funzione "im.pca()" dell'oggetto pcimage17, attraverso le parentesi quadre.
 pca1_2019<-pcimage19[[1]]
+pca1_2019
 pca1_2022<-pcimage22[[1]]
+pca1_2022
 
 par(mfrow=c(3,1))
 #Faccio nuovamente un par in colonna                                               
 #Visualizzazione della prima componente ottenuta dalla PCA nei tre anni con la palette di colori "cividis". 
-plot(pca1_2018, col=cividis)      
+plot(pca1_2017, col=cividis)      
 plot(pca1_2019, col=cividis)
 plot(pca1_2022, col=cividis)
 
-am18<-focal(pca1_2018,matrix(1/9,3,3),fun=sd)
+am17<-focal(pca1_2017,matrix(1/9,3,3),fun=sd)
+am17
 #Calcolo della deviazione standard attraverso la funzione "focal()" che consente di creare una finestra di calcolo la cui dimensione/composizione è definita da "matrix()"; nello specifico 1/9 indica che la finestra è grande 9 quadretti disposi 3x3. "fun()" indica la funzione e "sd" indica la deviazione standard. 
-am22<-focal(pca1_2019,matrix(1/9,3,3),fun=sd)
-am19<-focal(pca1_2022,matrix(1/9,3,3),fun=sd)
+am19<-focal(pca1_2019,matrix(1/9,3,3),fun=sd)
+am19
+am22<-focal(pca1_2022,matrix(1/9,3,3),fun=sd)
+am22
 
 par(mfrow=c(3,1))
 #Faccio nuovamente un par in colonna                                                     
-plot(am18, col=clyellow)
+plot(am17, col=clyellow)
 #Visualizzazione delle deviazioni standard, e quindi della variabilità, delle immagini con la palette di colori "clyellow".
 #Procedo con la stessa operazione appena fatta per gli anni successivi rimasti.
 plot(am19, col=clyellow)
@@ -548,7 +507,7 @@ plot(am22, col=clyellow)
 
 par(mfrow=c(3,1))
 #Faccio nuovamente un par in colonna                                                     
-plot(am18, col=cividis)
+plot(am17, col=cividis)
 #Visualizzazione delle deviazioni standard delle immagini con la palette di colori "cividis".                                   
 #Procedo con la stessa operazione appena fatta per gli anni successivi rimasti.
 plot(am19, col=cividis)
