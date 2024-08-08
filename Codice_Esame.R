@@ -337,7 +337,7 @@ clyellow<-colorRampPalette(c("darkblue", "yellow", "red", "black"))(100)
 par(mfrow=c(3,1))
 #Faccio nuovamente un par in colonna             
 plot(dvi2017, col=clyellow)
-#Le immagini vengono visualizzate attraverso la funzione "plot()" e rappresentano l'indice di differenza di vegetazione per l'immagine del 2018, in questo caso.
+#Le immagini vengono visualizzate attraverso la funzione "plot()" e rappresentano l'indice di differenza di vegetazione per l'immagine del 2017, in questo caso.
 #Procedo con la stessa operazione appena fatta per gli anni successivi rimasti.
 plot(dvi2019, col=clyellow)  
 plot(dvi2022, col=clyellow)    
@@ -455,23 +455,30 @@ var19k   #Variabilità spiegata dal quarto asse: 3.195176.
 
 tot22<-sum( 65.461322, 38.640064, 6.430111, 3.706848) 
 tot22
-var22x<-65.461322*100/tot19
-var22y<-38.640064*100/tot19
-var22z<-6.430111*100/tot19
-var22k<-3.706848*100/tot19
+var22x<-65.461322*100/tot22
+var22y<-38.640064*100/tot22
+var22z<-6.430111*100/tot22
+var22k<-3.706848*100/tot22
 
-var22x   #Variabilità spiegata dal primo asse: 57.37674.
-var22y   #Variabilità spiegata dal secondo asse: 33.86795.
-var22z   #Variabilità spiegata dal terzo asse: 5.635982.
-var22k   #Variabilità spiegata dal quarto asse: 3.249046.
+var22x   #Variabilità spiegata dal primo asse: 57.30241.
+var22y   #Variabilità spiegata dal secondo asse: 33.8241.
+var22z   #Variabilità spiegata dal terzo asse: 5.62868.
+var22k   #Variabilità spiegata dal quarto asse: 3.24484.
+
+#Vado a visualizzare i grafici con la palette di colori "viridis".
+viridis<-colorRampPalette(viridis(100))(100)
+plot(pcimage17, col=viridis)
+#Notiamo come PC3 indichi una bassa relazione.
+#Procedo con la stessa operazione appena fatta per gli anni successivi rimasti.
+plot(pcimage19, col=viridis)            
+plot(pcimage22, col=viridis)
 
 #Vado a visualizzare i grafici precedenti con la palette di colori "cividis" creata in precedenza per i soggetti affetti da daltonismo.
 plot(pcimage17, col=cividis)
-#Notiamo come PC3 indichi una bassa relazione.
 #Procedo con la stessa operazione appena fatta per gli anni successivi rimasti.
 plot(pcimage19, col=cividis)            
 plot(pcimage22, col=cividis)
- 
+
 #Si sceglie di procedere con l'analisi sulla prima componente (pc1) ottenuta in precedenza dalla funzione "im.pca()" poichè è la più rappresentativa, attraverso la funzione "focal()" che crea una finestra di calcolo che mi darà la mappa della variabilità dell'immagine. 
 pca1_2017<-pcimage17[[1]]
 pca1_2017
@@ -512,3 +519,5 @@ plot(am17, col=cividis)
 #Procedo con la stessa operazione appena fatta per gli anni successivi rimasti.
 plot(am19, col=cividis)
 plot(am22, col=cividis)
+
+#FINE
