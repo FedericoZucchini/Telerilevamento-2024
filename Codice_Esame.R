@@ -36,7 +36,7 @@ setwd("C:/Users/Federico/Documenti")
 
 ###IMPORTAZIONE IMMAGINI
 
-#Le immagini scelte sono state prese dal sito "Copernicus Browser" nella zona intorno ad Alleghe, Caprile, Colle Santa Lucia e Rocca Pietore (le zone cadorine più colpite dalla tempesta Vaia in quella zona) in Provincia di Belluno (BL) in Veneto.
+#Le immagini scelte sono state prese dal sito "Copernicus Browser" nella zona intorno ad Santa Fosca, Selva di Cadore, Colle Santa Lucia, Caprile, Rocca Pietore e Alleghe (le zone cadorine più colpite dalla tempesta Vaia in quella zona) in Provincia di Belluno (BL) in Veneto.
 #Le immagini sono state prese per 3 anni, in particolare 2017-2019-2022 (a distanza di 2 anni l’una dall’altra ed in particolare una l’anno prima e una l’anno dopo di Vaia).
 #Sono state selezionate quelle più pulite dalla copertura nuvolosa.
 #Le immagini sono tutte del periodo estivo (giugno 2017, luglio 2019, giugno 2022), non sono tutte dello stesso mese per via della copertura nuvolosa che rendeva illeggibili e non confrontabili le immagini.
